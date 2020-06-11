@@ -1,0 +1,12 @@
+#Floor.gd
+extends Sprite
+
+func _ready():
+	add_to_group("GAME_STATE")
+	material.set_shader_param("speed",0.3)
+
+func on_game_over():
+	material.set_shader_param("speed",0)
+func floor_speed(var v):
+	
+	material.set_shader_param("speed",v)

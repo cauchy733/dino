@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://FlappyBirdAssets/fonts/flappy_bird_style_small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/LabelScore.gd" type="Script" id=2]
+[ext_resource path="res://FlappyBirdAssets/img/score.png" type="Texture" id=3]
+[ext_resource path="res://FlappyBirdAssets/fonts/flappy_bird_font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scripts/InfoBoard.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 412.94, 1303.45 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 423.024, 1449.58 ), Vector2( 423.024, 1449.58 ), Vector2( 423.024, 500 ) ]
+}
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelScore" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = -2.521
+margin_top = 211.344
+margin_right = -2.521
+margin_bottom = 329.344
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 5
+custom_constants/shadow_offset_y = 5
+text = "0"
+align = 1
+valign = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureInfoBoard" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -307.06
+margin_top = 706.954
+margin_right = 324.94
+margin_bottom = 1035.95
+texture = ExtResource( 3 )
+expand = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelCurrent" type="Label" parent="TextureInfoBoard"]
+margin_left = 468.259
+margin_top = 93.1483
+margin_right = 552.259
+margin_bottom = 211.148
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelRecord" type="Label" parent="TextureInfoBoard"]
+margin_left = 465.742
+margin_top = 219.024
+margin_right = 549.742
+margin_bottom = 337.024
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureInfoBoard"]
+autoplay = "hide"
+anims/hide = SubResource( 3 )
+anims/show = SubResource( 2 )
